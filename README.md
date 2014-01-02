@@ -275,6 +275,24 @@ Other options and their default values:
 }
 ```
 
+Use event:
+[full sample](https://github.com/Pechalka/file_upload_demo)
+
+```javascript
+    var doc_id = req.url.split('/')[1]; // /uploads/2 => 2 - doc_id
+    upload.fileHandler({
+        uploadDir: __dirname + '/../public/uploads/' + doc_id,
+        uploadUrl:  '/../uploads/' + doc_id
+    })(req, res)
+    .on('end', function(fileInfo){
+        add_file(fileInfo.name, doc_id);
+    })
+    .on('delete', function(file_name){
+        remove_fie(file_name, doc_id);
+    })
+```
+
+
 ## Contributors
 
    * [@soomtong](http://github.com/soomtong)
